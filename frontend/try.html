@@ -1,0 +1,168 @@
+<html>
+<center>
+<form>
+    
+    <head>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>
+            var API_GATEWAY_ENDPOINT = 'https://ap2zzq07t8.execute-api.us-east-1.amazonaws.com/Prod/uploadrev';
+function show_message(type, message) {
+    $('#message').empty().append(
+        $('<div class="alert alert-' + type + '" role="alert">').text(message)
+    );
+}
+$(function() {
+    $('form').submit(function(event) {
+        var review = String($('#review').val());
+        event.preventDefault();
+        $.ajax({
+            url: API_GATEWAY_ENDPOINT,
+            method: 'post',
+            data: JSON.stringify({
+                "input": "{\"text\": \" "+review+" \"}",
+                "stateMachineArn": "arn:aws:states:us-east-1:244220539866:stateMachine:fakeReviewDetector"
+            }),
+            contentType: 'text/plain'
+        })
+        .done(function(data) {
+            alert('Your Review was Sent')
+        })
+        .fail(function(data) {
+            alert('Review not sent. Error Occured')
+        });
+    });
+});
+
+$(document).ready(function() {
+$("#getRes").click(function(e) {
+    e.preventDefault();
+    $.ajax({
+        type: "GET",
+        url: "https://e7klctw075.execute-api.us-east-1.amazonaws.com/Prod/",
+        data: { 
+        },
+        success: function(result) {
+            var htmltext = "<h1>";
+                htmltext+= "The review was found to be " +result["result"][0]["reviewResult"]+" with a probablity score of "+result["result"][0]["resultProbability"]+".<br>";
+                htmltext += "</h1>";
+                document.getElementById("id1").innerHTML = htmltext;
+                document.getElementById("id1").style.color = 'white';
+                document.getElementById("id1").style.textAlign = "center";
+
+        },
+        error: function(result) {
+            alert('error');
+        }
+    });
+});
+});
+
+</script>
+</head>
+<title>HTMLFont size</title>    
+<style>
+    body {
+      background-image: url('https://fake-review.s3.amazonaws.com/network-4851119_1920.jpg');
+      background-size: cover;
+    }
+  </style>
+</head>    
+<body>     
+    <br></br>
+    <h2 style="color:White;font-size:80px;" align="center">Cloud Computing and Big Data Systems Project</h2> 
+   <h1 style="color:White;font-size:80px;" align="center">FAKE REVIEW DETECTOR</h1>    
+</body> 
+
+    <div class="form-group">
+        
+        <input type="text" class="form-control" id="review" name="review"
+         placeholder="Enter Your Review Here" />
+    </div>
+    <div class="form-group">
+        <button type="submit"  id="submitcss" class="btn btn-success">Submit Review</button>
+    </div>
+    <div id="message"></div>
+</form>
+</center>
+<center>
+    <br>
+    <br>
+    <br>
+    <br>
+<div class="resultcss"
+<button id="getRes" class="btn btn-success">Show Result</button>
+</div></center>
+<div id="id1">  </div><br></br>
+<br>
+    <br>
+    <br>
+    <br>
+<center>
+<input type="button" id ="linkcss" target="_blank" onclick="location.href='https://search-fakereview-fjhl4wim7nopif7k7qvdt4wbga.us-east-1.es.amazonaws.com/_plugin/kibana/app/dashboards?security_tenant=private#/view/3a45b2a0-6381-11ec-ad3f-8d515db40441?_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-15m%2Cto%3Anow))';" value="Display Review Analytics" />
+</center>
+</html>
+
+<style>
+    #review {
+        height:80px;
+        display: inline-block;
+        width: 200px
+        font-size:14pt;
+        width:500px;
+    
+    } 
+.resultcss
+{
+    background-color: #17D57E; /* Green */
+  border: none;
+  color: black;
+  padding: 15px 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  font-family:Lucida Handwriting;
+  font-weight: bold;
+
+
+}
+#submitcss
+{
+    background-color: #17D57E; /* Green */
+    border: none;
+    color: black;
+    padding: 15px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    font-family:Lucida Handwriting;
+    font-weight: bold;
+  } 
+#linkcss
+{
+    background-color: #F79625; /* Green */
+  border: none;
+  color: black;
+  padding: 15px 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  font-family:Lucida Handwriting;
+  font-weight: bold;
+}
+input {
+    text-align: center;
+  }
+
+  
+  
+
+</style>
+
+
+
+
+
+
